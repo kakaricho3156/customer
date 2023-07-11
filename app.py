@@ -21,6 +21,21 @@ def main():
             search()
         elif str == "D":
             delete()
+        elif str == "E":
+            all_user = Customer.select()
+            search_name = input("User name >")
+            bool = False
+            for user in all_user:
+                if search_name == user.name:
+                    edit_name = input(f"New user name({user.name})")
+                    edit_age = input(f"New user age({user.age})")
+                    user.name = edit_name
+                    user.age = edit_age
+                    user.save()
+                    bool = True
+                    break
+            if not bool:
+                print(f"Sorry, {search_name} is not foundQ")
         else:
             print(f"Sorry, {str} is not found")
 
