@@ -17,8 +17,21 @@ def main():
             break
         elif str == "A":
             add_customer()
-        else:
-            print(f"{str}: command not found")
+        elif str == "F":
+            search()
+
+
+def search():
+    all_user = Customer.select()
+    search_name = input("User name >")
+    bool = False
+    for user in all_user:
+        if search_name == user.name:
+            print(f"Name: {user.name} Age:{user.age}")
+            bool = True
+            break
+    if not bool:
+        print(f"Sorry, {search_name} is not found")
 
 
 def add_customer():
