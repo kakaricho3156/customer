@@ -19,6 +19,24 @@ def main():
             add_customer()
         elif str == "F":
             search()
+        elif str == "D":
+            delete()
+        else:
+            print(f"Sorry, {str} is not found")
+
+
+def delete():
+    all_user = Customer.select()
+    delete_name = input("User name >")
+    found = False
+    for user in all_user:
+        if delete_name == user.name:
+            cus = Customer.get_by_id(user.id)
+            cus.delete_instance()
+            found = True
+            break
+    if not found:
+        print(f"Sorry, {delete_name} is not found")
 
 
 def search():
