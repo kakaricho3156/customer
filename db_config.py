@@ -20,9 +20,13 @@ if not db.connect():
 
 
 class Customer(Model):
-    name = CharField
-    age = IntegerField
+    id = IntegerField(primary_key=True)
+    name = CharField()
+    age = IntegerField()
 
     class Meta:
         database = db
         table_name = "customer"
+
+
+db.create_tables([Customer])
